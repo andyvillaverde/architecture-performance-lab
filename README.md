@@ -84,17 +84,17 @@ Componentes:
 
 ## Arquitectura
 
-Generador de Carga (k6)
-|
-v
-+-------------------+
-| MVC / WebFlux API |
-+-------------------+
-|
-v
-+-------------------+
-| Servicio Externo  |
-+-------------------+
+Generador de Carga (k6)  
+         |  
+         v  
++-------------------+  
+| MVC / WebFlux API |  
++-------------------+  
+|  
+v  
++-------------------+  
+| Servicio Externo  |  
++-------------------+  
 
 ---
 
