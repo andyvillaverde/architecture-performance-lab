@@ -1,90 +1,90 @@
 # Architecture Performance Lab
 
-## Overview
+## Descripción General
 
-This repository contains a set of architecture and performance experiments designed to compare different execution and concurrency models in microservice-based integration scenarios.
+Este repositorio contiene un conjunto de experimentos de arquitectura y rendimiento diseñados para comparar diferentes modelos de ejecución y concurrencia en escenarios de integración basados en microservicios.
 
-The objective is to evaluate how blocking and non-blocking architectures behave when interacting with slow external services, measuring their impact on scalability, resource consumption, throughput and response times.
+El objetivo es evaluar el comportamiento de arquitecturas bloqueantes y no bloqueantes al interactuar con servicios externos de alta latencia, analizando su impacto en la escalabilidad, consumo de recursos, rendimiento y tiempos de respuesta.
 
-The experiments were executed in a distributed environment using separate machines for load generation, service consumption and external service simulation.
-
----
-
-## Objectives
-
-* Compare blocking and reactive execution models.
-* Analyze resource utilization under concurrent workloads.
-* Measure the impact of external service latency on application scalability.
-* Evaluate how different architectural approaches behave in real-world integration scenarios.
+Los experimentos fueron ejecutados en un entorno distribuido utilizando máquinas independientes para la generación de carga, el procesamiento de solicitudes y la simulación de servicios externos.
 
 ---
 
-## Projects
+## Objetivos
+
+* Comparar modelos de ejecución bloqueantes y reactivos.
+* Analizar la utilización de recursos bajo cargas concurrentes.
+* Medir el impacto de la latencia de servicios externos sobre la escalabilidad de las aplicaciones.
+* Evaluar el comportamiento de distintos enfoques arquitectónicos en escenarios reales de integración.
+
+---
+
+## Proyectos
 
 ### external-service
 
-Simulates a slow external API.
+Simula una API externa con alta latencia.
 
-Characteristics:
+Características:
 
-* Spring Boot REST API
-* Artificial latency using delayed responses
-* Request counters and thread tracking
-* Used as a dependency for all benchmark scenarios
+* API REST desarrollada con Spring Boot.
+* Simulación de tiempos de respuesta mediante retardos controlados.
+* Registro de solicitudes y monitoreo de hilos de ejecución.
+* Utilizado como dependencia común para todos los escenarios evaluados.
 
 ### mvc
 
-Traditional blocking implementation.
+Implementación tradicional basada en procesamiento bloqueante.
 
-Characteristics:
+Características:
 
-* Spring MVC
-* Thread-per-request execution model
-* Synchronous communication with external services
+* Spring MVC.
+* Modelo de ejecución Thread-per-Request.
+* Comunicación síncrona con servicios externos.
 
 ### reactive-webclient
 
-Reactive implementation.
+Implementación basada en programación reactiva.
 
-Characteristics:
+Características:
 
-* Spring WebFlux
-* Event Loop architecture
-* Non-blocking HTTP client using WebClient
-* Reactive request processing
+* Spring WebFlux.
+* Arquitectura basada en Event Loops.
+* Cliente HTTP no bloqueante mediante WebClient.
+* Procesamiento reactivo de solicitudes.
 
 ---
 
-## Test Environment
+## Entorno de Pruebas
 
-### Machine 1
+### Máquina 1
 
-Responsibilities:
+Responsabilidades:
 
-* External service simulation
-* Load generation using k6
+* Simulación del servicio externo.
+* Generación de carga mediante k6.
 
-Components:
+Componentes:
 
 * external-service
 * k6
 
-### Machine 2
+### Máquina 2
 
-Responsibilities:
+Responsabilidades:
 
-* System under test
+* Sistema bajo evaluación.
 
-Components:
+Componentes:
 
 * mvc
 * reactive-webclient
 
 ---
 
-## Architecture
+## Arquitectura
 
-Load Generator (k6)
+Generador de Carga (k6)
 |
 v
 +-------------------+
@@ -93,36 +93,36 @@ v
 |
 v
 +-------------------+
-| External Service  |
+| Servicio Externo  |
 +-------------------+
 
 ---
 
-## Metrics Collected
+## Métricas Recopiladas
 
-The following metrics were collected during each test execution:
+Durante cada ejecución se recopilaron las siguientes métricas:
 
-* Concurrent requests
-* Active requests
-* Thread utilization
-* Response times
-* Throughput
-* CPU consumption
-* Memory consumption
-
----
-
-## Benchmark Methodology
-
-1. Deploy the external service.
-2. Execute the MVC implementation under load.
-3. Capture performance metrics.
-4. Execute the reactive implementation under identical conditions.
-5. Compare results and analyze architectural trade-offs.
+* Solicitudes concurrentes.
+* Solicitudes activas.
+* Utilización de hilos.
+* Tiempos de respuesta.
+* Throughput.
+* Consumo de CPU.
+* Consumo de memoria.
 
 ---
 
-## Technologies
+## Metodología de Evaluación
+
+1. Desplegar el servicio externo.
+2. Ejecutar la implementación MVC bajo carga.
+3. Capturar métricas de rendimiento y consumo de recursos.
+4. Ejecutar la implementación reactiva bajo las mismas condiciones.
+5. Comparar los resultados y analizar los compromisos arquitectónicos de cada enfoque.
+
+---
+
+## Tecnologías Utilizadas
 
 * Java
 * Spring Boot
@@ -130,10 +130,10 @@ The following metrics were collected during each test execution:
 * Spring WebFlux
 * Maven
 * k6
-* REST APIs
+* APIs REST
 
 ---
 
-## Disclaimer
+## Descargo de Responsabilidad
 
-The goal of this repository is not to promote a specific framework, but to provide practical and reproducible experiments that help understand the trade-offs between different execution models and architectural approaches.
+El objetivo de este repositorio no es promover una tecnología o framework en particular, sino proporcionar experimentos prácticos y reproducibles que permitan comprender las ventajas, limitaciones y compromisos asociados a distintos modelos de ejecución y enfoques arquitectónicos.
